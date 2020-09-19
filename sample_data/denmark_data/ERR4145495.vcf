@@ -1,0 +1,25 @@
+##fileformat=VCFv4.0
+##fileDate=20200725
+##source=lofreq call -f reference/SARS-CoV-2-ref.fasta --min-mq 10 -o variant_calling_lofreq/Denmark_WGS/ERR4145495.vcf read_mapping/Denmark_WGS/ERR4145495.sorted.bam 
+##reference=reference/SARS-CoV-2-ref.fasta
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw Depth">
+##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">
+##INFO=<ID=SB,Number=1,Type=Integer,Description="Phred-scaled strand bias at this position">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Counts for ref-forward bases, ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=CONSVAR,Number=0,Type=Flag,Description="Indicates that the variant is a consensus variant (as opposed to a low frequency variant).">
+##INFO=<ID=HRUN,Number=1,Type=Integer,Description="Homopolymer length to the right of report indel position">
+##FILTER=<ID=min_dp_10,Description="Minimum Coverage 10">
+##FILTER=<ID=sb_fdr,Description="Strand-Bias Multiple Testing Correction: fdr corr. pvalue > 0.001000">
+##FILTER=<ID=min_snvqual_69,Description="Minimum SNV Quality (Phred) 69">
+##FILTER=<ID=min_indelqual_20,Description="Minimum Indel Quality (Phred) 20">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+NC_045512.2	241	.	C	T	49314	PASS	DP=10476;AF=0.828083;SB=125;DP4=45,152,4284,4529
+NC_045512.2	1059	.	C	T	15123	PASS	DP=629;AF=0.922099;SB=6;DP4=7,11,316,278
+NC_045512.2	3037	.	C	T	43056	PASS	DP=2401;AF=0.705539;SB=8;DP4=18,23,945,755
+NC_045512.2	12781	.	C	T	49314	PASS	DP=3919;AF=0.901761;SB=14;DP4=69,44,1839,1789
+NC_045512.2	14408	.	C	T	49314	PASS	DP=5001;AF=0.749250;SB=244;DP4=191,406,2281,1902
+NC_045512.2	15842	.	C	A	49314	PASS	DP=7670;AF=0.919426;SB=131;DP4=31,116,3721,3496
+NC_045512.2	22103	.	G	C	27082	PASS	DP=2080;AF=0.813462;SB=71;DP4=56,123,930,845
+NC_045512.2	23403	.	A	G	49314	PASS	DP=3287;AF=0.797992;SB=56;DP4=68,20,1420,1302
+NC_045512.2	25563	.	G	T	49314	PASS	DP=6778;AF=0.826055;SB=0;DP4=94,88,3137,2965
