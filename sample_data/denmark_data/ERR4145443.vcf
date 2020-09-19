@@ -1,0 +1,25 @@
+##fileformat=VCFv4.0
+##fileDate=20200725
+##source=lofreq call -f reference/SARS-CoV-2-ref.fasta --min-mq 10 -o variant_calling_lofreq/Denmark_WGS/ERR4145443.vcf read_mapping/Denmark_WGS/ERR4145443.sorted.bam 
+##reference=reference/SARS-CoV-2-ref.fasta
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw Depth">
+##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">
+##INFO=<ID=SB,Number=1,Type=Integer,Description="Phred-scaled strand bias at this position">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Counts for ref-forward bases, ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=CONSVAR,Number=0,Type=Flag,Description="Indicates that the variant is a consensus variant (as opposed to a low frequency variant).">
+##INFO=<ID=HRUN,Number=1,Type=Integer,Description="Homopolymer length to the right of report indel position">
+##FILTER=<ID=min_dp_10,Description="Minimum Coverage 10">
+##FILTER=<ID=sb_fdr,Description="Strand-Bias Multiple Testing Correction: fdr corr. pvalue > 0.001000">
+##FILTER=<ID=min_snvqual_69,Description="Minimum SNV Quality (Phred) 69">
+##FILTER=<ID=min_indelqual_20,Description="Minimum Indel Quality (Phred) 20">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+NC_045512.2	241	.	C	T	49314	PASS	DP=29575;AF=0.828233;SB=549;DP4=83,499,11234,13682
+NC_045512.2	1059	.	C	T	1375	PASS	DP=52;AF=0.923077;SB=3;DP4=0,2,25,23
+NC_045512.2	1302	.	C	T	1108	PASS	DP=52;AF=0.903846;SB=0;DP4=0,0,23,27
+NC_045512.2	3037	.	C	T	49314	PASS	DP=2834;AF=0.691955;SB=0;DP4=24,22,1009,964
+NC_045512.2	10323	.	A	G	21466	PASS	DP=7623;AF=0.566575;SB=1587;DP4=585,1722,3004,2133
+NC_045512.2	14408	.	C	T	49314	PASS	DP=6008;AF=0.754328;SB=240;DP4=201,479,2562,2539
+NC_045512.2	23403	.	A	G	34890	PASS	DP=1952;AF=0.788422;SB=14;DP4=38,23,781,825
+NC_045512.2	25563	.	G	T	49314	PASS	DP=13284;AF=0.824450;SB=7;DP4=176,214,5776,6136
+NC_045512.2	29696	.	C	T	49314	PASS	DP=8201;AF=0.851725;SB=148;DP4=61,190,3657,3731

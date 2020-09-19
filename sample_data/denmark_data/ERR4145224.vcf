@@ -1,0 +1,29 @@
+##fileformat=VCFv4.0
+##fileDate=20200724
+##source=lofreq call -f reference/SARS-CoV-2-ref.fasta --min-mq 10 -o variant_calling_lofreq/Denmark_WGS/ERR4145224.vcf read_mapping/Denmark_WGS/ERR4145224.sorted.bam 
+##reference=reference/SARS-CoV-2-ref.fasta
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw Depth">
+##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">
+##INFO=<ID=SB,Number=1,Type=Integer,Description="Phred-scaled strand bias at this position">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Counts for ref-forward bases, ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=CONSVAR,Number=0,Type=Flag,Description="Indicates that the variant is a consensus variant (as opposed to a low frequency variant).">
+##INFO=<ID=HRUN,Number=1,Type=Integer,Description="Homopolymer length to the right of report indel position">
+##FILTER=<ID=min_dp_10,Description="Minimum Coverage 10">
+##FILTER=<ID=sb_fdr,Description="Strand-Bias Multiple Testing Correction: fdr corr. pvalue > 0.001000">
+##FILTER=<ID=min_snvqual_69,Description="Minimum SNV Quality (Phred) 69">
+##FILTER=<ID=min_indelqual_20,Description="Minimum Indel Quality (Phred) 20">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+NC_045512.2	241	.	C	T	49314	PASS	DP=7409;AF=0.833986;SB=168;DP4=13,138,2516,3772
+NC_045512.2	1059	.	C	T	10228	PASS	DP=432;AF=0.935185;SB=3;DP4=5,9,200,212
+NC_045512.2	1302	.	C	T	8351	PASS	DP=431;AF=0.863109;SB=0;DP4=5,5,181,217
+NC_045512.2	3037	.	C	T	28347	PASS	DP=1607;AF=0.702551;SB=38;DP4=3,25,521,614
+NC_045512.2	7392	.	C	T	70	PASS	DP=7495;AF=0.112875;SB=340;DP4=2645,3132,418,1057
+NC_045512.2	9454	.	T	C	47018	PASS	DP=3615;AF=0.755740;SB=62;DP4=107,243,1324,1654
+NC_045512.2	14408	.	C	T	40473	PASS	DP=3638;AF=0.762507;SB=147;DP4=110,322,1390,1679
+NC_045512.2	22083	.	C	A	641	PASS	DP=1736;AF=0.134793;SB=9;DP4=637,812,92,148
+NC_045512.2	22403	.	G	A	430	PASS	DP=1597;AF=0.119599;SB=3;DP4=583,751,91,104
+NC_045512.2	23403	.	A	G	44668	PASS	DP=2341;AF=0.784707;SB=56;DP4=43,14,830,1066
+NC_045512.2	23426	.	G	T	25372	PASS	DP=2341;AF=0.668945;SB=9;DP4=1,5,836,755
+NC_045512.2	25563	.	G	T	49314	PASS	DP=5774;AF=0.845168;SB=11;DP4=78,75,2269,2949
+NC_045512.2	29733	.	C	T	558	PASS	DP=1874;AF=0.173426;SB=23;DP4=632,775,156,264

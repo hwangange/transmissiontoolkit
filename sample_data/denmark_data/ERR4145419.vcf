@@ -1,0 +1,24 @@
+##fileformat=VCFv4.0
+##fileDate=20200724
+##source=lofreq call -f reference/SARS-CoV-2-ref.fasta --min-mq 10 -o variant_calling_lofreq/Denmark_WGS/ERR4145419.vcf read_mapping/Denmark_WGS/ERR4145419.sorted.bam 
+##reference=reference/SARS-CoV-2-ref.fasta
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw Depth">
+##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">
+##INFO=<ID=SB,Number=1,Type=Integer,Description="Phred-scaled strand bias at this position">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Counts for ref-forward bases, ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=CONSVAR,Number=0,Type=Flag,Description="Indicates that the variant is a consensus variant (as opposed to a low frequency variant).">
+##INFO=<ID=HRUN,Number=1,Type=Integer,Description="Homopolymer length to the right of report indel position">
+##FILTER=<ID=min_dp_10,Description="Minimum Coverage 10">
+##FILTER=<ID=sb_fdr,Description="Strand-Bias Multiple Testing Correction: fdr corr. pvalue > 0.001000">
+##FILTER=<ID=min_snvqual_69,Description="Minimum SNV Quality (Phred) 69">
+##FILTER=<ID=min_indelqual_20,Description="Minimum Indel Quality (Phred) 20">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+NC_045512.2	241	.	C	T	49314	PASS	DP=4612;AF=0.835646;SB=66;DP4=14,68,1749,2163
+NC_045512.2	1059	.	C	T	18927	PASS	DP=793;AF=0.940731;SB=13;DP4=4,12,385,376
+NC_045512.2	1302	.	C	T	15217	PASS	DP=793;AF=0.887768;SB=2;DP4=9,7,352,384
+NC_045512.2	3037	.	C	T	44874	PASS	DP=2544;AF=0.691824;SB=24;DP4=11,29,902,865
+NC_045512.2	14408	.	C	T	46746	PASS	DP=4312;AF=0.758581;SB=148;DP4=161,339,1855,1775
+NC_045512.2	23403	.	A	G	43177	PASS	DP=2345;AF=0.805544;SB=40;DP4=51,20,938,1006
+NC_045512.2	24095	.	G	T	601	PASS	DP=4324;AF=0.119796;SB=8;DP4=1773,1725,295,250
+NC_045512.2	25563	.	G	T	49314	PASS	DP=4842;AF=0.840355;SB=14;DP4=39,64,2141,2259

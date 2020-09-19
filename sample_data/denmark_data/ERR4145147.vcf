@@ -1,0 +1,25 @@
+##fileformat=VCFv4.0
+##fileDate=20200724
+##source=lofreq call -f reference/SARS-CoV-2-ref.fasta --min-mq 10 -o variant_calling_lofreq/Denmark_WGS/ERR4145147.vcf read_mapping/Denmark_WGS/ERR4145147.sorted.bam 
+##reference=reference/SARS-CoV-2-ref.fasta
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw Depth">
+##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">
+##INFO=<ID=SB,Number=1,Type=Integer,Description="Phred-scaled strand bias at this position">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Counts for ref-forward bases, ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=CONSVAR,Number=0,Type=Flag,Description="Indicates that the variant is a consensus variant (as opposed to a low frequency variant).">
+##INFO=<ID=HRUN,Number=1,Type=Integer,Description="Homopolymer length to the right of report indel position">
+##FILTER=<ID=min_dp_10,Description="Minimum Coverage 10">
+##FILTER=<ID=sb_fdr,Description="Strand-Bias Multiple Testing Correction: fdr corr. pvalue > 0.001000">
+##FILTER=<ID=min_snvqual_69,Description="Minimum SNV Quality (Phred) 69">
+##FILTER=<ID=min_indelqual_20,Description="Minimum Indel Quality (Phred) 20">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+NC_045512.2	241	.	C	T	49314	PASS	DP=10889;AF=0.832032;SB=171;DP4=39,185,4161,5057
+NC_045512.2	3037	.	C	T	49314	PASS	DP=3588;AF=0.690078;SB=5;DP4=24,33,1232,1262
+NC_045512.2	14408	.	C	T	49314	PASS	DP=6451;AF=0.753217;SB=262;DP4=223,533,2722,2711
+NC_045512.2	18877	.	C	T	49314	PASS	DP=4388;AF=0.719234;SB=10;DP4=463,576,1511,1663
+NC_045512.2	21789	.	C	T	4938	PASS	DP=1003;AF=0.446660;SB=7;DP4=192,228,240,238
+NC_045512.2	23403	.	A	G	49314	PASS	DP=2956;AF=0.805480;SB=18;DP4=53,34,1172,1307
+NC_045512.2	24197	.	G	T	49314	PASS	DP=6119;AF=0.716947;SB=0;DP4=594,617,2227,2348
+NC_045512.2	25563	.	G	T	49314	PASS	DP=9431;AF=0.814336;SB=1;DP4=222,225,4032,4262
+NC_045512.2	26735	.	C	T	49314	PASS	DP=7967;AF=0.678047;SB=13;DP4=1013,938,2746,2835
