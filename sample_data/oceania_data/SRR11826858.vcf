@@ -1,0 +1,26 @@
+##fileformat=VCFv4.0
+##fileDate=20200726
+##source=lofreq call -f ../../reference/SARS-CoV-2-ref.fasta --min-mq 10 -o ../../variant_calling_lofreq/Oceania/SRR11826858.vcf SRR11826858.sorted.bam 
+##reference=../../reference/SARS-CoV-2-ref.fasta
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw Depth">
+##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">
+##INFO=<ID=SB,Number=1,Type=Integer,Description="Phred-scaled strand bias at this position">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Counts for ref-forward bases, ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=CONSVAR,Number=0,Type=Flag,Description="Indicates that the variant is a consensus variant (as opposed to a low frequency variant).">
+##INFO=<ID=HRUN,Number=1,Type=Integer,Description="Homopolymer length to the right of report indel position">
+##FILTER=<ID=min_dp_10,Description="Minimum Coverage 10">
+##FILTER=<ID=sb_fdr,Description="Strand-Bias Multiple Testing Correction: fdr corr. pvalue > 0.001000">
+##FILTER=<ID=min_snvqual_65,Description="Minimum SNV Quality (Phred) 65">
+##FILTER=<ID=min_indelqual_20,Description="Minimum Indel Quality (Phred) 20">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+NC_045512.2	884	.	C	T	9300	PASS	DP=281;AF=0.996441;SB=0;DP4=0,1,125,155
+NC_045512.2	1397	.	G	A	7151	PASS	DP=235;AF=0.995745;SB=3;DP4=1,0,105,129
+NC_045512.2	3365	.	C	T	227	PASS	DP=233;AF=0.068670;SB=7;DP4=110,107,5,11
+NC_045512.2	8626	.	C	T	599	PASS	DP=290;AF=0.120690;SB=13;DP4=122,133,10,25
+NC_045512.2	8653	.	G	T	13159	PASS	DP=422;AF=0.992891;SB=4;DP4=0,1,269,150
+NC_045512.2	11083	.	G	T	5428	PASS	DP=195;AF=0.933333;SB=0;DP4=0,0,93,89
+NC_045512.2	12491	.	G	A	72	PASS	DP=379;AF=0.023747;SB=7;DP4=153,216,6,3
+NC_045512.2	25064	.	G	T	1596	PASS	DP=271;AF=0.254613;SB=3;DP4=126,76,47,22
+NC_045512.2	28688	.	T	C	5605	PASS	DP=165;AF=1.000000;SB=0;DP4=0,0,80,85
+NC_045512.2	29742	.	G	T	7265	PASS	DP=224;AF=0.995536;SB=0;DP4=0,0,80,143
