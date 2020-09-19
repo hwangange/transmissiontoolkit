@@ -1,0 +1,29 @@
+##fileformat=VCFv4.0
+##fileDate=20200726
+##source=lofreq call -f ../../reference/SARS-CoV-2-ref.fasta --min-mq 10 -o ../../variant_calling_lofreq/Oceania/SRR11826964.vcf SRR11826964.sorted.bam 
+##reference=../../reference/SARS-CoV-2-ref.fasta
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw Depth">
+##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">
+##INFO=<ID=SB,Number=1,Type=Integer,Description="Phred-scaled strand bias at this position">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Counts for ref-forward bases, ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=CONSVAR,Number=0,Type=Flag,Description="Indicates that the variant is a consensus variant (as opposed to a low frequency variant).">
+##INFO=<ID=HRUN,Number=1,Type=Integer,Description="Homopolymer length to the right of report indel position">
+##FILTER=<ID=min_dp_10,Description="Minimum Coverage 10">
+##FILTER=<ID=sb_fdr,Description="Strand-Bias Multiple Testing Correction: fdr corr. pvalue > 0.001000">
+##FILTER=<ID=min_snvqual_65,Description="Minimum SNV Quality (Phred) 65">
+##FILTER=<ID=min_indelqual_20,Description="Minimum Indel Quality (Phred) 20">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+NC_045512.2	4540	.	C	T	8744	PASS	DP=254;AF=0.996063;SB=0;DP4=0,0,199,54
+NC_045512.2	8782	.	C	T	49314	PASS	DP=1678;AF=1.000000;SB=0;DP4=0,0,699,979
+NC_045512.2	9477	.	T	A	49314	PASS	DP=1513;AF=0.999339;SB=4;DP4=1,0,545,967
+NC_045512.2	14805	.	C	T	49314	PASS	DP=2171;AF=0.998158;SB=5;DP4=0,3,1003,1164
+NC_045512.2	21919	.	T	C	164	PASS	DP=777;AF=0.018018;SB=19;DP4=305,458,1,13
+NC_045512.2	25459	.	G	T	697	PASS	DP=820;AF=0.048780;SB=1;DP4=284,496,16,24
+NC_045512.2	25979	.	G	T	34657	PASS	DP=1020;AF=0.999020;SB=0;DP4=0,0,311,708
+NC_045512.2	27938	.	A	T	90	PASS	DP=1281;AF=0.008587;SB=5;DP4=299,971,4,7
+NC_045512.2	28144	.	T	C	17098	PASS	DP=502;AF=1.000000;SB=0;DP4=0,0,213,289
+NC_045512.2	28311	.	C	T	8372	PASS	DP=241;AF=1.000000;SB=0;DP4=0,0,98,143
+NC_045512.2	28657	.	C	T	12990	PASS	DP=384;AF=0.997396;SB=3;DP4=0,1,225,158
+NC_045512.2	28863	.	C	T	9246	PASS	DP=285;AF=0.996491;SB=0;DP4=0,0,163,121
+NC_045512.2	29633	.	T	A	81	PASS	DP=580;AF=0.013793;SB=5;DP4=250,322,5,3
