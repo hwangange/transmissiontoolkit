@@ -1,0 +1,26 @@
+##fileformat=VCFv4.0
+##fileDate=20200726
+##source=lofreq call -f ../../reference/SARS-CoV-2-ref.fasta --min-mq 10 -o ../../variant_calling_lofreq/Oceania/SRR11826888.vcf SRR11826888.sorted.bam 
+##reference=../../reference/SARS-CoV-2-ref.fasta
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw Depth">
+##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">
+##INFO=<ID=SB,Number=1,Type=Integer,Description="Phred-scaled strand bias at this position">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Counts for ref-forward bases, ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=CONSVAR,Number=0,Type=Flag,Description="Indicates that the variant is a consensus variant (as opposed to a low frequency variant).">
+##INFO=<ID=HRUN,Number=1,Type=Integer,Description="Homopolymer length to the right of report indel position">
+##FILTER=<ID=min_dp_10,Description="Minimum Coverage 10">
+##FILTER=<ID=sb_fdr,Description="Strand-Bias Multiple Testing Correction: fdr corr. pvalue > 0.001000">
+##FILTER=<ID=min_snvqual_66,Description="Minimum SNV Quality (Phred) 66">
+##FILTER=<ID=min_indelqual_20,Description="Minimum Indel Quality (Phred) 20">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+NC_045512.2	1526	.	G	A	114	PASS	DP=1218;AF=0.010673;SB=1;DP4=598,607,7,6
+NC_045512.2	5605	.	G	A	71	PASS	DP=961;AF=0.008325;SB=5;DP4=516,436,6,2
+NC_045512.2	5743	.	G	C	66	PASS	DP=854;AF=0.009368;SB=3;DP4=341,505,2,6
+NC_045512.2	8782	.	C	T	49314	PASS	DP=1974;AF=0.998987;SB=0;DP4=0,1,720,1252
+NC_045512.2	17747	.	C	T	35683	PASS	DP=1032;AF=1.000000;SB=0;DP4=0,0,561,471
+NC_045512.2	17858	.	A	G	37763	PASS	DP=1102;AF=0.997278;SB=0;DP4=1,1,439,660
+NC_045512.2	18060	.	C	T	33535	PASS	DP=1009;AF=0.999009;SB=0;DP4=0,0,275,733
+NC_045512.2	24694	.	A	T	41422	PASS	DP=1210;AF=0.999174;SB=0;DP4=0,1,495,714
+NC_045512.2	26224	.	C	A	86	PASS	DP=1077;AF=0.009285;SB=4;DP4=406,661,2,8
+NC_045512.2	28144	.	T	C	26122	PASS	DP=785;AF=0.996178;SB=2;DP4=2,1,373,409
