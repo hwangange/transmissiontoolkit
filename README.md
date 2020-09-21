@@ -120,13 +120,13 @@ Once Docker is installed on your machine, run the following commands on your com
      docker run -p 8888:8888 marybrady722/transmission_project
      
 After running these two commands in the terminal, follow the instructions to access the Juptyer Notebook. You should reach a screen like this:
-![image](https://github.com/marybrady722/transmissiontoolkit/blob/master/images/jupyter.jpg)
+![image](change)
 Click on Sample Mason Data.ipynb to view the sample data. To use your own data, upload a folder of vcfs into the main folder, change the inputs in the notebook, and run!
 
 ### GitHub Download
 To use TransmissionToolkit by downloading the source code and dependencies yourself on your machine, follow the instructions below.
 
-First, ensure you have downloaded all of the [required packages and libraries.]((https://github.com/marybrady722/transmissiontoolkit/blob/master/README.md#Requirements-(for-GitHub-download-&-use)
+First, ensure you have downloaded all of the [required packages and libraries.](https://github.com/marybrady722/transmissiontoolkit/blob/master/README.md#Requirements-(for-GitHub-download-&-use))
 
 Once you have all of the requirements, download all of the code from this repo. 
 
