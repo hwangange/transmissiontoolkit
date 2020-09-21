@@ -103,9 +103,15 @@ There are 3 ways to access transmission toolkit on your device.
 ### mybinder.org Link
 To access TransmissionToolkit via mybinder.org, simply click this link. Once you reach the link, you should see a page that looks like this:
 
+![image](https://github.com/marybrady722/transmissiontoolkit/blob/master/images/binder1.jpg)
+
 Click on the folder called sample_data. That should bring you to a page that looks like this:
 
+![image](https://github.com/marybrady722/transmissiontoolkit/blob/master/images/binder2.jpg)
+
 From there, click on Sample Data.ipynb. You should reach a page that looks like this:
+
+![image](https://github.com/marybrady722/transmissiontoolkit/blob/master/images/binder3.jpg)
 
 Now that you're in the notebook, click the run button for each code block to run through and generate tha sample data!
 
@@ -130,7 +136,7 @@ First, ensure you have downloaded all of the [required packages and libraries.](
 
 Once you have all of the requirements, download all of the code from this repo. 
 
-To access the Jupyter Notebook with the data demo, first ensure you have [Jupyuter](https://jupyter.org/install) installed on your machine. Then navigate to the sample_data folder within the terminal. Once in the sample_data folder, run the following command:
+To access the Jupyter Notebook with the data demo, first ensure you have [Jupyter](https://jupyter.org/install) installed on your machine. Then navigate to the sample_data folder within the terminal. Once in the sample_data folder, run the following command:
 
     jupyter notebook
 
