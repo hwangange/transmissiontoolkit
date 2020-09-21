@@ -101,7 +101,11 @@ This is the sample output of a bb_bottleneck software run.
 There are 3 ways to access transmission toolkit on your device.
 
 ### mybinder.org Link
-To access TransmissionToolkit via mybinder.org, simply click this link. Once you reach the link, you should see a page that looks like this:
+To access TransmissionToolkit via mybinder.org, simply click this [link](https://mybinder.org/v2/gh/marybrady722/transmissiontoolkit/master). Alternatively, you can copy and paste this url into the browsaer of your choice.
+
+https://mybinder.org/v2/gh/marybrady722/transmissiontoolkit/master
+
+Once you reach the link, you should see a page that looks like this:
 
 ![image](https://github.com/marybrady722/transmissiontoolkit/blob/master/images/binder1.jpg)
 
