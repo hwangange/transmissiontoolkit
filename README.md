@@ -105,7 +105,11 @@ To access TransmissionToolkit via mybinder.org, simply click this [link](https:/
 
 https://mybinder.org/v2/gh/marybrady722/transmissiontoolkit/master
 
-Once you reach the link, you should see a page that looks like this:
+Once you reach the link, you should see a loading page that looks like this:
+
+![image](https://github.com/marybrady722/transmissiontoolkit/blob/master/images/binder4.jpg)
+
+Now, just wait until the binder loads. That screen should change to one that looks like this after the binder has loaded:
 
 ![image](https://github.com/marybrady722/transmissiontoolkit/blob/master/images/binder1.jpg)
 
