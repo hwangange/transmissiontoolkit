@@ -159,11 +159,11 @@ def bb_input_data(donor, recip, min_read_depth=0, max_AF=1, parse_type="multiall
     """
     Stores info from parsing VCF files to dictionary.
     """
-    donor_file = os.path.join('vcfs/', donor)
-    recip_file = os.path.join('vcfs/', recip)
+    #donor_file = os.path.join('vcfs/', donor)
+    #recip_file = os.path.join('vcfs/', recip)
     
-    donor_data = extract_lfv(donor_file, min_read_depth=min_read_depth, max_AF=0.5, min_freq=0.02, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)
-    recip_data = extract_lfv(recip_file, min_read_depth=min_read_depth, max_AF=1, min_freq=0, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)
+    donor_data = extract_lfv(donor, min_read_depth=min_read_depth, max_AF=0.5, min_freq=0.02, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)
+    recip_data = extract_lfv(recip, min_read_depth=min_read_depth, max_AF=1, min_freq=0, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)
     
     shared_count = 0
 
@@ -997,16 +997,18 @@ class PhyloTree:
         matrix_data = dict() # maps filename to LFV data
 
         for fname in os.listdir(vcf_dir):
-            path = os.path.join(vcf_dir, fname)
-            data = extract_lfv(
-                path, 
-                min_freq=min_AF, 
-                max_AF=1,
-                parse_type='multiallelic',
-                store_reference=store_ref, 
-                masks=masks, 
-                mask_type=mask_status
-            )
+            invalid = ['empty_vcfs', 'standard_bar_plots', 'weighted_bar_plots', 'msv', 'positions', 'bottleneck']
+            if fname not in invalid:
+                path = os.path.join(vcf_dir, fname)
+                data = extract_lfv(
+                    path, 
+                    min_freq=min_AF, 
+                    max_AF=1,
+                    parse_type='multiallelic',
+                    store_reference=store_ref, 
+                    masks=masks, 
+                    mask_type=mask_status
+                )
             for pos in data:
                 variant_pos.add(pos)
             matrix_data[fname.split('.')[0]] = data
