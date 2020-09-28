@@ -159,8 +159,8 @@ def bb_input_data(donor, recip, min_read_depth=0, max_AF=1, parse_type="multiall
     """
     Stores info from parsing VCF files to dictionary.
     """
-    donor_file = os.path.join('vcfs/', donor)
-    recip_file = os.path.join('vcfs/', recip)
+    #donor_file = os.path.join('vcfs/', donor)
+    #recip_file = os.path.join('vcfs/', recip)
     
     donor_data = extract_lfv(donor, min_read_depth=min_read_depth, max_AF=0.5, min_freq=0.02, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)
     recip_data = extract_lfv(recip, min_read_depth=min_read_depth, max_AF=1, min_freq=0, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)
