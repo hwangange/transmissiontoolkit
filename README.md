@@ -183,11 +183,3 @@ Kaiyu Hernandez
 Leonard, Ashley Sobel, et al. "Transmission bottleneck size estimation from pathogen deep-sequencing data, with an application to human influenza A virus." Journal of virology 91.14 (2017).
 
 
-bb_bottleneck software
-
-matplotlib docs
-
-toytree docs
-
-raxml docs
-
