@@ -7,6 +7,7 @@ import glob
 import datetime
 import errno
 from pathlib import Path
+import random
 
 
 import vcf
@@ -16,7 +17,7 @@ import toytree
 import toyplot
 import toyplot.svg
 import Bio 
-from Bio import AlignIO
+#from Bio import AlignIO
 
 
 def filter_empty(vcf_path):
@@ -46,6 +47,21 @@ def empty_move(path, empty_vcf_list):
     for filename in empty_vcf_list:
         shutil.move(filename, path)
 
+
+def choose_file(input_folder):
+    invalid = ['empty_vcfs', 'standard_bar_plots', 'weighted_bar_plots', 'msv', 'positions', 'bottleneck']
+    vcfs = os.listdir(input_folder)
+    notSelected = True
+    while notSelected == True:
+        randomNum1 = random.randrange(len(vcfs))
+        randomNum2 = random.randrange(len(vcfs))
+        if randomNum1 != randomNum2 and vcfs[randomNum1] not in invalid and vcfs[randomNum2] not in invalid:
+            file1 = vcfs[randomNum1]
+            file2 = vcfs[randomNum2]
+            notSelected = False
+    file1 = os.path.join(input_folder, file1)
+    file2 = os.path.join(input_folder, file2)
+    return file1, file2
 
 def _is_valid_lfv(min_read_depth, max_AF, var_reads, total_reads):
     """
@@ -80,7 +96,7 @@ def mask_parse(masks):
     return mask_positions
 
 
-def extract_lfv(filename, min_read_depth=10, min_freq=0, max_AF=1, parse_type="biallelic", store_reference=True, masks=None, mask_type='hide'):
+def extract_lfv(filename, input_folder=None, min_read_depth=10, min_freq=0, max_AF=1, parse_type="biallelic", store_reference=True, masks=None, mask_type='hide'):
     """
     Extracts variant data from VCF and creates a dictionary storing data
     in the form: {position: {variant: [frequency, depth]}}.
@@ -99,7 +115,11 @@ def extract_lfv(filename, min_read_depth=10, min_freq=0, max_AF=1, parse_type="b
 
     #lfv_data = Biallelic() if parse_type == "biallelic" else Multiallelic()
     lfv_data = {}
-    data = vcf.Reader(open(filename, 'r'))
+    if input_folder != None:
+        filename2 = os.path.join(input_folder, filename)
+        data = vcf.Reader(open(filename2, 'r'))
+    else:
+        data = vcf.Reader(open(filename, 'r'))
     ref_data = {}
 
     for record in data:
@@ -155,15 +175,17 @@ def extract_lfv(filename, min_read_depth=10, min_freq=0, max_AF=1, parse_type="b
     return lfv_data
 
 #RENAME to donor_recip
-def bb_input_data(donor, recip, min_read_depth=0, max_AF=1, parse_type="multiallelic", store_reference=True, masks=None, mask_type="hide"):
+def bb_input_data(donor, recip, input_folder, min_read_depth=0, max_AF=1, parse_type="multiallelic", store_reference=True, masks=None, mask_type="hide"):
     """
     Stores info from parsing VCF files to dictionary.
     """
-    #donor_file = os.path.join('vcfs/', donor)
-    #recip_file = os.path.join('vcfs/', recip)
+    #donor_file = os.path.join(input_folder, donor)
+    #recip_file = os.path.join(input_folder, recip)
+    donor_file = donor
+    recip_file = recip
     
-    donor_data = extract_lfv(donor, min_read_depth=min_read_depth, max_AF=0.5, min_freq=0.02, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)
-    recip_data = extract_lfv(recip, min_read_depth=min_read_depth, max_AF=1, min_freq=0, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)
+    donor_data = extract_lfv(donor_file, input_folder, min_read_depth=min_read_depth, max_AF=0.5, min_freq=0.02, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)
+    recip_data = extract_lfv(recip_file, input_folder, min_read_depth=min_read_depth, max_AF=1, min_freq=0, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)
     
     shared_count = 0
 
@@ -210,7 +232,7 @@ def all_pairs_parse(vcf_path, masks=None, mask_type='hide', min_read_depth=10, m
     for donor_filename in os.listdir(vcf_folder):
         for recipient_filename in os.listdir(vcf_folder):
             if donor_filename != recipient_filename and donor_filename not in invalid and recipient_filename not in invalid:
-                all_pairs.append((bb_input_data(donor_filename, recipient_filename, min_read_depth=min_read_depth, max_AF=max_AF, parse_type=parse_type, masks=masks, mask_type=mask_type), donor_filename, recipient_filename))
+                all_pairs.append((bb_input_data(donor_filename, recipient_filename, vcf_path, min_read_depth=min_read_depth, max_AF=max_AF, parse_type=parse_type, masks=masks, mask_type=mask_type), donor_filename, recipient_filename))
     return all_pairs
 
 def build_majority_consensus(
@@ -293,12 +315,12 @@ def build_minor_consensus(
     return ''.join(consensus)
 
 
-def bb_file_writer(donor, recipient, parse_type="biallelic", min_read_depth=0, max_AF=1, masks='default_mask.txt'):
+def bb_file_writer(donor, recipient, input_folder, parse_type="biallelic", min_read_depth=0, max_AF=1, masks='default_mask.txt'):
     """
     Writes input file to BB_bottleneck software.
     """
     # Parse data and store outputs
-    vcf_data, shared_count = bb_input_data(donor, recipient, parse_type=parse_type, min_read_depth=min_read_depth, max_AF=max_AF, masks=masks)
+    vcf_data, shared_count = bb_input_data(donor, recipient, input_folder, parse_type=parse_type, min_read_depth=min_read_depth, max_AF=max_AF, masks=masks)
 
     # Create shortened filenames
     fname1 = donor.split("_")[0] 
@@ -326,11 +348,11 @@ def all_pairs(vcf_path, input_folder, min_read_depth=0, max_AF=1, min_shared=1, 
     for donor_filename in os.listdir(vcf_folder):
         for recipient_filename in os.listdir(vcf_folder):
             if donor_filename != recipient_filename and donor_filename not in invalid and recipient_filename not in invalid:
-                shared_count = bb_input_data(donor_filename, recipient_filename, min_read_depth=min_read_depth, max_AF=max_AF, masks='default_mask.txt')[1]
+                shared_count = bb_input_data(donor_filename, recipient_filename, input_folder, min_read_depth=min_read_depth, max_AF=max_AF, masks='default_mask.txt')[1]
                 if shared_count < min_shared:
                     continue
                 else:
-                    bb_file_writer(donor_filename, recipient_filename, min_read_depth=min_read_depth, max_AF=max_AF)
+                    bb_file_writer(donor_filename, recipient_filename, input_folder, min_read_depth=min_read_depth, max_AF=max_AF)
                     donor = donor_filename.split("_")[0] 
                     recipient = recipient_filename.split("_")[0] 
                     filename = f"new_{donor}_{recipient}_thred{shared_count}_complete_nofilter_bbn.txt"
@@ -472,14 +494,19 @@ def bar_plots(vcf_path, plot_type, masks='default_mask.txt', mask_type='hide', m
         os.mkdir(path)
     all_pairs = []
     vcf_folder = Path(vcf_path)
+    shown = 0
     for donor_filename in os.listdir(vcf_folder):
         for recipient_filename in os.listdir(vcf_folder):
             if donor_filename != recipient_filename and donor_filename not in invalid and recipient_filename not in invalid:
-                if bb_input_data(donor_filename, recipient_filename)[1] > min_shared:
-                    make_standard_bar_plot(donor_filename, recipient_filename, min_read_depth=min_read_depth, max_AF=1, output_folder=path, parse_type=parse_type, store_reference=True, plot_type=plot_type, masks=masks, mask_type='hide')
+                if bb_input_data(donor_filename, recipient_filename, vcf_path)[1] > min_shared:
+                    make_standard_bar_plot(donor_filename, recipient_filename, vcf_path, min_read_depth=min_read_depth, max_AF=1, output_folder=path, parse_type=parse_type, store_reference=True, plot_type=plot_type, masks=masks, mask_type='hide')
+                    if shown <= 5:
+                        plt.show()
+                        shown += 1
+
                 
 
-def make_standard_bar_plot(donor_filename, recipient_filename, min_read_depth=0, max_AF=1, output_folder=None, parse_type="biallelic", store_reference=True, plot_type='standard', masks='default_mask.txt', mask_type='hide'):
+def make_standard_bar_plot(donor_filename, recipient_filename, input_folder, min_read_depth=0, max_AF=1, output_folder=None, parse_type="biallelic", store_reference=True, plot_type='standard', masks='default_mask.txt', mask_type='hide'):
     """
     Saves a barplot figure showing allele frequencies vs. position.
     Inputs:
@@ -497,7 +524,7 @@ def make_standard_bar_plot(donor_filename, recipient_filename, min_read_depth=0,
         raise ValueError("Invalid input.")
 
 
-    vcf_data = bb_input_data(donor_filename, recipient_filename, min_read_depth=min_read_depth, max_AF=max_AF, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)[0]
+    vcf_data = bb_input_data(donor_filename, recipient_filename, input_folder, min_read_depth=min_read_depth, max_AF=max_AF, parse_type=parse_type, store_reference=store_reference, masks=masks, mask_type=mask_type)[0]
     positions, donor_freqs, recipient_freqs, donor_depths, recipient_depths = [], [], [], [], []
 
     donor_filename = donor_filename.split("_")
@@ -569,13 +596,22 @@ def make_standard_bar_plot(donor_filename, recipient_filename, min_read_depth=0,
     plt.legend(loc='lower left', bbox_to_anchor= (0.0, 1.01), ncol=2, borderaxespad=0, frameon=False, fontsize=(8))
     plt.xlim(-0.5,maxn-0.5)
     plt.tight_layout()
-    if output_folder == None:
-        plt.savefig('%s_%s_allele_freq.png'%(donor_filename, recipient_filename), dpi=300, bbox_inches='tight')
-        plt.show()
-    else:
-        filename = '%s_%s_allele_freq.png'%(donor_filename, recipient_filename)
-        save = os.path.join(output_folder, filename)
-        plt.savefig(save, dpi=300, bbox_inches='tight')
+    filename = '%s_%s_allele_freq.png'%(donor_filename, recipient_filename)
+    #save = os.path.join(output_folder, filename)
+     #plt.savefig(save, dpi=300, bbox_inches='tight')
+    plt.show()
+#     if output_folder == None:
+#         folder = str(plot_type + "_bar_plots_samples")
+#         if input_folder != None:
+#             path = os.path.join(input_folder, folder)
+#         else: 
+#             path = folder
+#         os.mkdir(path)
+#         filename = '%s_%s_allele_freq.png'%(donor_filename, recipient_filename)
+#         save = os.path.join(path, filename)
+#         plt.show()
+#     else:
+     
 
 
 def masked_shared_variants(sv_count, important_pairs, input_folder, output_folder=None):
@@ -1022,9 +1058,13 @@ class PhyloTree:
 
         # Populate matrix with data
         for i, data in enumerate(matrix_data):
+            # if i not in row_map:
+            #     continue
             name = row_map[i]
             if name[0] == "'":
                 name = name[1:]
+            # if name == "reference" or name in invalid :
+            #     continue
             for j, pos in column2position.items():
                 if pos in matrix_data[name]:
                     for var in matrix_data[name][pos]:
